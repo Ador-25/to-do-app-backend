@@ -11,7 +11,6 @@ D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\My Projects\toDoListApi\toDoListApi\obj\Debug\net5.0\toDoListApi.csprojAssemblyReference.cache
 D:\My Projects\toDoListApi\toDoListApi\obj\Debug\net5.0\toDoListApi.GeneratedMSBuildEditorConfig.editorconfig
 D:\My Projects\toDoListApi\toDoListApi\obj\Debug\net5.0\toDoListApi.AssemblyInfoInputs.cache
 D:\My Projects\toDoListApi\toDoListApi\obj\Debug\net5.0\toDoListApi.AssemblyInfo.cs
@@ -60,3 +59,4 @@ D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\runtimes\win-x86\native\
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\My Projects\toDoListApi\toDoListApi\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\My Projects\toDoListApi\toDoListApi\obj\Debug\net5.0\toDoListApi.csprojAssemblyReference.cache

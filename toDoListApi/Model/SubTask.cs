@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using toDoListApi.Helper;
 
 namespace toDoListApi.Model
 {
@@ -18,6 +19,12 @@ namespace toDoListApi.Model
         [Range(0,1)]
         public int IsCompleted { get; set; }
         public Work Work { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime StartTime { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime EndTime { get; set; }
+
+
 
     }
 }

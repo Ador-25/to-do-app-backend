@@ -9,10 +9,11 @@ namespace toDoListApi.Model
     public class Work
     {
         [Key]
-        [Required]
-        [MinLength(1)]
-        [MaxLength(50)]
-        public string Name { get; set; }
+        public Guid WorkId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date")]
+        public DateTime Date { get; set; }
         public User User { get; set; }
 
         
