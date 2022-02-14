@@ -73,6 +73,7 @@ namespace toDoListApi
             services.AddControllers();
             services.AddScoped<IUserData, SqlUserData>();
             services.AddScoped<IWorkData, SqlWorkData>();
+            services.AddScoped<ISubTaskData, SqlSubTaskData>();
 //
             services.AddSwaggerGen(c =>
             {

@@ -18,11 +18,13 @@ namespace toDoListApi.Model
         // 1 represents complete
         [Range(0,1)]
         public int IsCompleted { get; set; }
+
         public Work Work { get; set; }
-        [DataType(DataType.Time)]
-        public DateTime StartTime { get; set; }
-        [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
+
+        [Required]
+        public TimeSpan StartTime { get; set; }
+        [Required]
+        public TimeSpan  EndTime { get; set; }
 
 
 

@@ -8,7 +8,7 @@ namespace toDoListApi.Helper
 {
     public class Time
     {
-        public Guid id { get; set; }
+
         [Range(0, 23)]
         public int Hour { get; set; }
         [Range(0, 23)]
