@@ -17,22 +17,33 @@ namespace toDoListApi.Data
             _userDbContext = userDbContext;
         }
 
-        public SubTask AddSubTask(Time startTime, Time endTime, string name, Guid workid)
+        public SubTask AddSubTask(Time startTime, Time endTime, string name, Guid workid,string email)
         {
             try
             {
-
-                SubTask subTask = new SubTask();
-                subTask.StartTime = new TimeSpan(startTime.Hour, startTime.Minute, 0);
-                subTask.EndTime = new TimeSpan(endTime.Hour, endTime.Minute, 0);
-                subTask.TaskId = new Guid();
-                subTask.TaskName = name;
-                var work = _userDbContext.Work.Find(workid);
-                subTask.Work = work;
-                _userDbContext.SubTask.Add(subTask);
-                _userDbContext.SaveChanges();
+                List<SubTask> createdList = GetSubtasks(workid, email);
                 
-                return subTask;
+                    SubTask subTask = new SubTask();
+                    subTask.StartTime = new TimeSpan(startTime.Hour, startTime.Minute, 0);
+                    subTask.EndTime = new TimeSpan(endTime.Hour, endTime.Minute, 0);
+                    subTask.TaskId = new Guid();
+                    subTask.TaskName = name;
+                    var work = _userDbContext.Work.Find(workid);
+                    subTask.Work = work;
+                    if (isSlotAvailable(createdList, subTask)) // working perfectly if one task ends at 17.30 other has to start from 17.31
+                       {
+                            _userDbContext.SubTask.Add(subTask);
+                            _userDbContext.SaveChanges();
+                            return subTask;
+                        }
+                else
+                {
+                    return null;
+                }
+                    
+                
+                
+                
             }
             catch
             {
@@ -48,38 +59,13 @@ namespace toDoListApi.Data
         }
         // to be completed
 
-        private bool isTimeAvailable(Guid workid)
-        {
-            List<SubTask> list = _userDbContext.SubTask.OrderBy(s => s.StartTime) //remove order by if problem
-                .Where(u => u.Work.WorkId == workid)
-                .ToList();
-
-            // get a sorted list
-            // case 1: given time is between two times
-            // check if giventime.start >=elem[i].end && giventime.end <=elem[i+1].start ====> then insert
-            //case 2: given time is the first ***********
-            // check if giventime.end > elem[first].start =>>>>>> insert
-            // case 3: given time is last
-            // check if giventime.start >= elem[last].end =>>>>>> insert 
-            // if array length==0                         =>>>>>> insert
-
-            foreach(SubTask temp in list)
-            {
-                // givenTime = some range
-                // list= {0-2, 3-4, 4.40-6 , 7-8.30 , 9-11  }
-                // if givenTime.start >= elem.start && elem.end > givenTime.start
-
-            }
-
-
-            return false;
-        }
+       
 
         // TEST IT***********************************
-        // GET A SORTED LIST
+     
         private static bool isSlotAvailable(List<SubTask> list, SubTask givenTime)
         {
-
+            list = list.OrderBy(l => l.StartTime).ToList(); // sorting the list based on start time
             // if no tasks available
             if (list.Count == 0)
                 return true;

@@ -10,6 +10,6 @@ namespace toDoListApi.Data
     public interface ISubTaskData
     {
         List<SubTask> GetSubtasks(Guid workid,string email);
-        SubTask AddSubTask(Time startTime, Time endTime, string name, Guid workid);
+        SubTask AddSubTask(Time startTime, Time endTime, string name, Guid workid,string email);
     }
 }

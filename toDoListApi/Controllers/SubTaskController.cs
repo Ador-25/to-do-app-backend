@@ -47,8 +47,14 @@ namespace toDoListApi.Controllers
         [Route("api/[controller]/{name}/{workid}")]
         public IActionResult AddSubTask([FromBody] SubTaskBody subTask,string name,Guid workid)
         {
+            var user = User.Identity.Name;
+            if (user != null)
+            {
+                return Ok(_subTaskData.AddSubTask(subTask.StartTime, subTask.EndTime, name, workid,user));
+            }
+            return Unauthorized("Can not add task");
            
-            return Ok(_subTaskData.AddSubTask(subTask.StartTime,subTask.EndTime,name,workid));
+            
         }
     }
 }

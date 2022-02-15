@@ -50,7 +50,9 @@ namespace toDoListApi.Data
             var work = _userDbContext.Work.Find(WorkId);
             if (work != null)
             {
-                _userDbContext.Remove(work);
+   
+                _userDbContext.Work.Remove(work);
+
                 _userDbContext.SaveChanges();
                 return work;
             }

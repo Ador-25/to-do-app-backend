@@ -20,6 +20,11 @@ namespace toDoListApi.Connection
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //
+            modelBuilder.Entity<SubTask>()
+                .HasOne(e => e.Work)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+
             base.OnModelCreating(modelBuilder);
         }
     }

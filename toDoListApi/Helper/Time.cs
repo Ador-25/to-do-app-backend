@@ -11,7 +11,7 @@ namespace toDoListApi.Helper
 
         [Range(0, 23)]
         public int Hour { get; set; }
-        [Range(0, 23)]
+        [Range(0, 60)]
         public int Minute { get; set; }
     }
 }
