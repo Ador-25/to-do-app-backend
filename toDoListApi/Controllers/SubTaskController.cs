@@ -56,5 +56,35 @@ namespace toDoListApi.Controllers
            
             
         }
+        [Authorize]
+        [HttpDelete]
+        [Route("api/[controller]/{taskid}")]
+        public IActionResult DeleteSubTask(Guid taskid)
+        {
+            var user = User.Identity.Name;
+            if (user != null)
+            {
+                return Ok(_subTaskData.DeleteSubTask(user,taskid));
+            }
+            return Unauthorized("Can not delete task");
+
+
+        }
+
+        // ADD Slot Validation for edit
+        [Authorize]
+        [HttpPatch]
+        [Route("api/[controller]/{name}/{taskid}")]
+        public IActionResult EditSubTask([FromBody] SubTaskBody subTask, string name, Guid taskid)
+        {
+            var user = User.Identity.Name;
+            if (user != null)
+            {
+                return Ok(_subTaskData.EditSubTask(subTask.StartTime,subTask.EndTime,name,taskid));
+            }
+            return Unauthorized("Can not delete task");
+
+
+        }
     }
 }

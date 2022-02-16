@@ -11,5 +11,8 @@ namespace toDoListApi.Data
     {
         List<SubTask> GetSubtasks(Guid workid,string email);
         SubTask AddSubTask(Time startTime, Time endTime, string name, Guid workid,string email);
+        SubTask DeleteSubTask(string email, Guid taskId);
+        SubTask EditSubTask(Time startTime, Time endTime, string name, Guid workid);
+
     }
 }

@@ -88,5 +88,35 @@ namespace toDoListApi.Data
             }
             return false;
         }
+        public SubTask DeleteSubTask(string email, Guid taskId)
+        {
+            var temp = _userDbContext.SubTask.Find(taskId);
+            if (temp != null)
+            {
+                _userDbContext.SubTask.Remove(temp);
+                _userDbContext.SaveChanges();
+                return temp;
+            }
+            else return null;
+        }
+        // implement later to check if subtask belongs to user
+        private bool userHasSubTask()
+        {
+            return true;
+        }
+
+        public SubTask EditSubTask(Time startTime, Time endTime, string name, Guid taskid)
+        {
+            var subTask = _userDbContext.SubTask.Find(taskid);// this is taskid
+            if (subTask != null)
+            {
+                subTask.StartTime = new TimeSpan(startTime.Hour, startTime.Minute, 0);
+                subTask.EndTime = new TimeSpan(endTime.Hour, endTime.Minute, 0);
+                subTask.TaskName = name;
+                _userDbContext.SubTask.Update(subTask);
+                _userDbContext.SaveChanges();
+            }
+            return subTask;
+        }
     }
 }
