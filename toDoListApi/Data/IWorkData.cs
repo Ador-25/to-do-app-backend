@@ -12,7 +12,10 @@ namespace toDoListApi.Data
         Work AddWork(Date date, string email);
         List<Work> GetWorkList(string email);
         Work DeleteWork(Guid WorkId);
-        
+        // edit work
+        Work EditWork(string email,Date date, Guid workid);
+        // number of tasks done
+
     }
 
 }

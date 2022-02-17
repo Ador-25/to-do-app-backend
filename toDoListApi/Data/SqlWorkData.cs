@@ -59,6 +59,31 @@ namespace toDoListApi.Data
             else
                 return work;
         }
+        // Follow dry to make it better => with add work
+
+        public Work EditWork(string email ,Date date, Guid workid)
+        {
+            var user = _userDbContext.User.Find(email);
+            if (user == null)
+                throw new NotImplementedException();
+            else
+            {
+                List<Work> list = GetWorkList(email);
+                foreach (Work temp in list)
+                {
+                    if (temp.Date.Year == date.Year && temp.Date.Month == date.Month && temp.Date.Day == date.Day)
+                    {
+                        return null;
+                    }
+                }
+                Work work = _userDbContext.Work.Find(workid);
+                DateTime dateTime = new DateTime(date.Year, date.Month, date.Day);
+                work.Date = dateTime;
+                _userDbContext.Work.Update(work);
+                _userDbContext.SaveChanges();
+                return work;
+            }
+        }
 
         public List<Work> GetWorkList(string email)
         {

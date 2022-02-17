@@ -39,10 +39,7 @@ namespace toDoListApi.Data
                 else
                 {
                     return null;
-                }
-                    
-                
-                
+                }         
                 
             }
             catch
@@ -117,6 +114,47 @@ namespace toDoListApi.Data
                 _userDbContext.SaveChanges();
             }
             return subTask;
+        }
+
+        public SubTask MakeComplete(Guid taskId)
+        {
+            var subTask = _userDbContext.SubTask.Find(taskId);
+            if (subTask!= null)
+            {
+                subTask.IsCompleted = 1;
+                _userDbContext.SubTask.Update(subTask);
+                _userDbContext.SaveChanges();
+                return subTask;
+            }
+            else
+                return null;
+        }
+
+        public SubTask MakeInComplete(Guid taskId)
+        {
+            var subTask = _userDbContext.SubTask.Find(taskId);
+            if (subTask != null)
+            {
+                subTask.IsCompleted = 0;
+                _userDbContext.SubTask.Update(subTask);
+                _userDbContext.SaveChanges();
+                return subTask;
+            }
+            else
+                return null;
+        }
+
+        public string NumberOfSubTaskDoneInWork(Guid workid, string email)
+        {
+            List<SubTask> list = GetSubtasks(workid, email);
+            int count = 0;
+            foreach(SubTask temp in list)
+            {
+                if (temp.IsCompleted == 1)
+                    count++;
+            }
+            string dum = (list.Count == 1 || list.Count == 0) ? " task" : " tasks";
+            return (count+ " out of " + list.Count+dum+ " completed");
         }
     }
 }

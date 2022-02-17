@@ -18,7 +18,7 @@ namespace toDoListApi.Controllers
         }
         [HttpGet]
         [Authorize]
-        [Route("api/[controller]/user")]
+        [Route("api/[controller]")]
         public IActionResult GetUser()
         {
             var userName = User.Identity.Name;

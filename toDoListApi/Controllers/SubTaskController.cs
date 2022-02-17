@@ -86,5 +86,42 @@ namespace toDoListApi.Controllers
 
 
         }
+        [Authorize]
+        [HttpPatch]
+        [Route("api/[controller]/setComplete/{taskid}")]
+        public IActionResult CompleteSubTask(Guid taskid)
+        {
+            var subTask = _subTaskData.MakeComplete(taskid);
+            if (subTask != null)
+            {
+                return Ok(subTask);
+            }
+            return BadRequest("Cannot update data");
+        }
+        [Authorize]
+        [HttpPatch]
+        [Route("api/[controller]/setInComplete/{taskid}")]
+        public IActionResult inCompleteSubTask(Guid taskid)
+        {
+            var subTask = _subTaskData.MakeInComplete(taskid);
+            if (subTask != null)
+            {
+                return Ok(subTask);
+            }
+            return BadRequest("Cannot update data");
+        }
+        [Authorize]
+        [HttpGet]
+        [Route("api/[controller]/number/{workid}")]
+        public IActionResult GetDoneSubTasks(Guid workId)
+        {
+            var user = User.Identity.Name;
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(_subTaskData.NumberOfSubTaskDoneInWork(workId,user));
+        }
+
     }
 }

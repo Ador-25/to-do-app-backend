@@ -41,6 +41,34 @@ namespace toDoListApi.Controllers
             }
             
         }
+        [HttpPatch]
+        [Authorize]
+        [Route("api/[controller]/editwork/{workid}")]
+        public IActionResult EditWork([FromBody] Date date,Guid workid)
+        {
+            var userName = User.Identity.Name;
+            if (userName == null)
+                return Unauthorized();
+            try
+            {
+                var work = _workData.EditWork(userName, date, workid);
+               if (work!=null)
+                {
+                    return Ok(work);
+                }
+                else
+                {
+                    return Ok(new Response { Status = "Error", Message = "Can not Edit work" });
+                }
+                
+            }
+            catch
+            {
+                return Ok(new Response { Status = "Error", Message = "Can not Edit work" });
+            }
+
+        }
+
         [HttpGet]
         [Authorize]
         [Route("api/[controller]")]
