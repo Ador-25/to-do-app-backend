@@ -141,6 +141,44 @@ namespace toDoListApi.Data
             return newList;
          }
 
-       
+        public Model.Task DeleteTask(string email, Guid TaskId) {
+            var user = _userDbContext.User.Find(email);
+            var temp = _userDbContext.Task.Find(TaskId);
+            if (temp.User== user)
+            {
+                _userDbContext.Task.Remove(temp);
+                _userDbContext.SaveChanges();
+                return temp;
+            }
+            return null;
+        }
+
+        public Model.Task SetTaskComplete(string email, Guid TaskId)
+        {
+            var user = _userDbContext.User.Find(email);
+            var temp = _userDbContext.Task.Find(TaskId);
+            if (temp.User == user)
+            {
+                temp.isCompleted = true;
+                _userDbContext.Task.Update(temp);
+                _userDbContext.SaveChanges();
+                return temp;
+            }
+            return null;
+        }
+
+        public Model.Task SetTaskInComplete(string email, Guid TaskId)
+        {
+            var user = _userDbContext.User.Find(email);
+            var temp = _userDbContext.Task.Find(TaskId);
+            if (temp.User == user)
+            {
+                temp.isCompleted = false;
+                _userDbContext.Task.Update(temp);
+                _userDbContext.SaveChanges();
+                return temp;
+            }
+            return null;
+        }
     }
 }

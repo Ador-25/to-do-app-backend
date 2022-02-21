@@ -12,6 +12,8 @@ namespace toDoListApi.Data
         List<Model.Task> GetTaskListInRange(string email,DateTimeOffset startTime, DateTimeOffset endTime);
         Model.Task AddTask(string email, TaskModel taskModel);
         Model.Task EditTask(string email, TaskModel taskModel,Guid taskId);
-
+        Model.Task DeleteTask(string email, Guid TaskId);
+        Model.Task SetTaskComplete(string email, Guid TaskId);
+        Model.Task SetTaskInComplete(string email, Guid TaskId);
     }
 }
