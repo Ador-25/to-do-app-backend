@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using toDoListApi.Connection;
 
 namespace toDoListApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220218151716_datetimeoffsetadded")]
+    partial class datetimeoffsetadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,9 +263,6 @@ namespace toDoListApi.Migrations
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("isCompleted")
-                        .HasColumnType("bit");
 
                     b.HasKey("TaskId");
 
